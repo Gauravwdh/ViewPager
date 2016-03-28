@@ -7,6 +7,9 @@ import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private int currentItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,9 +18,14 @@ public class MainActivity extends AppCompatActivity {
         final MyAdapter myAdapter = new MyAdapter(getSupportFragmentManager());
         viewPager.setAdapter(myAdapter);
 
+
+        currentItem = viewPager.getCurrentItem();
+
+
         viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
+                currentItem = position;
                 Log.d("TAG", position + " : " + myAdapter.getItem(position));
             }
         });
